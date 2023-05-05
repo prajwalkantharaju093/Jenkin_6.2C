@@ -13,9 +13,9 @@ echo "compile the code and generate any necessary artifacts"
     }
     post{
         always{echo "always"}
-    success{ echo "successfully DONE"
-      mail to: "prajwalkantharaju@gmail.com"
-      subject: "Build status"
+    success{ 
+      mail to: "prajwalkantharaju@gmail.com",
+      subject: "Build status",
       body: "Build success"}
 failure{echo "Sorry failed"}}}
 
