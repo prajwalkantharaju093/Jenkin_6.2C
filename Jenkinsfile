@@ -26,7 +26,7 @@ stages {
                              mimeType: 'text/plain',
                              subject: subject,
                              to: recipients
-                }
+                }}
     }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
