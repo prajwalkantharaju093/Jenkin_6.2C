@@ -10,8 +10,7 @@ stages {
     success{ 
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
-      body: "Build success"
-    ${BUILD_LOG, maxLines=9999, escapeHtml=false}}
+      body: "Build success"}
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
