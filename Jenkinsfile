@@ -9,7 +9,7 @@ stages {
         always{echo "always"}
     success{ 
       emailext body: 'Stage completed successfully. Please see attached log file for details.', 
-    attachmentsPattern: '**/*.log',
+    attachmentsPattern: '*.log',
     to: 'prajwalkantharaju.com',
     subject: 'Pipeline Notification - Stage Completed'
     }
