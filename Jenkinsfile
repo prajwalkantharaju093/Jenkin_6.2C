@@ -10,11 +10,13 @@ stages {
     success{ 
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
-      body: "Build success"}
+      body: "Build success"
+    ${BUILD_LOG, maxLines=9999, escapeHtml=false}}
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
-      body: "Build Fail"}}}
+      body: "Build Fail"
+       }}}
 
 stage('Unit and Integration Tests'){
     steps{
