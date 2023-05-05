@@ -10,7 +10,7 @@ stages {
     success{ mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
      emailext body: "Build success",
-attachmentsPattern: 'build.log'
+attachmentsPattern: '**/*.log'
     }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
