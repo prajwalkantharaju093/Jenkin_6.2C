@@ -1,15 +1,10 @@
 pipeline{
 agent any
-environment {NAME = "Prajwal K" 
-DIRECTORY_PATH="path_URL"
-TESTING_ENVIRONMENT="Luna"
-PRODUCTION_ENVIRONMENT ="Airavata"
-}
+
 stages {
     stage('Build'){
     steps{
-        echo "fetch the source code from the directory path $DIRECTORY_PATH"
-echo "compile the code and generate any necessary artifacts"
+        echo "Build the code using maven and to compile and package code."
     }
     post{
         always{echo "always"}
@@ -17,36 +12,60 @@ echo "compile the code and generate any necessary artifacts"
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
       body: "Build success"}
-failure{echo "Sorry failed"}}}
+failure{echo "Sorry failed"
+       mail to: "prajwalkantharaju@gmail.com",
+      subject: "Build status",
+      body: "Build Fail"}}}
 
-stage('Test'){
+stage('Unit and Integration Tests'){
     steps{
-        echo "unit tests" 
-        echo "integration tests"
+        echo "running unit tests using selenium" 
+        echo "running integration tests using selenium"
     }
 }
 
-stage('Code Quality Check'){
+stage('Code Analysis'){
     steps{
-        echo "check the quality of the code"
+        echo "check the quality of the code as per industry standards using CheckStyle"
     }
 }
 
-stage('Deploy'){
+stage('Security Scan'){
     steps{
-        echo "Deploy to $TESTING_ENVIRONMENT Successfull"
+        echo "performing a security scan on the code using a tool to identify any vulnerabilities using Acunetix"
+    }
+    success{ 
+      mail to: "prajwalkantharaju@gmail.com",
+      subject: "Scan status",
+      body: "Scan completed no errors"}
+failure{echo "Sorry failed"
+       mail to: "prajwalkantharaju@gmail.com",
+      subject: "Scan status",
+      body: "Scan failure"
+        
+stage('Deploy to staging'){
+    steps{
+        echo "deploy the application to a staging server AWS EC2 instance server"
     }
 }
 
-stage('Approval'){
+stage('Integration Tests on Staging'){
     steps{
-        sleep 10
+        echo "testing on staging environment using selenium"
     }
+    success{ 
+      mail to: "prajwalkantharaju@gmail.com",
+      subject: "Test status",
+      body: "success"}
+failure{echo "Sorry failed"
+       mail to: "prajwalkantharaju@gmail.com",
+      subject: "Test status",
+      body: "Fail"}
 }
 
 stage('Deploy to Production'){
     steps{
-        echo "Deploy to $PRODUCTION_ENVIRONMENT successfull"
+        echo "deploy the application to a production server AWS EC2 instance server"
     }
 }
 }
