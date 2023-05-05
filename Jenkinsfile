@@ -10,13 +10,17 @@ stages {
     success{ 
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
-      body: "Build success"}
+      body: "Build success",
+          def logs = findFiles(glob: '**/*.log')
+        def attachments = logs.collect { it.path }
+        emailext attachmentsPattern: attachments.join(',')
+    }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
       body: "Build Fail"
        }}}
-
+    
 stage('Unit and Integration Tests'){
     steps{
         echo "running unit tests using selenium" 
