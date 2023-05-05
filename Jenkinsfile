@@ -33,6 +33,7 @@ stage('Security Scan'){
     steps{
         echo "performing a security scan on the code using a tool to identify any vulnerabilities using Acunetix"
     }
+    post{
     success{ 
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Scan status",
@@ -40,7 +41,7 @@ stage('Security Scan'){
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Scan status",
-           body: "Scan failure"}}
+           body: "Scan failure"}}}
         
 stage('Deploy to staging'){
     steps{
@@ -52,6 +53,7 @@ stage('Integration Tests on Staging'){
     steps{
         echo "testing on staging environment using selenium"
     }
+    post{
     success{ 
       mail to: "prajwalkantharaju@gmail.com",
       subject: "Test status",
@@ -59,7 +61,7 @@ stage('Integration Tests on Staging'){
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Test status",
-      body: "Fail"}
+           body: "Fail"}}
 }
 
 stage('Deploy to Production'){
