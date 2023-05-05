@@ -41,7 +41,7 @@ stage('Security Scan'){
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Scan status",
-      body: "Scan failure"
+           body: "Scan failure"}
         
 stage('Deploy to staging'){
     steps{
