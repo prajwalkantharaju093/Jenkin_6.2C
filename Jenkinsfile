@@ -40,7 +40,7 @@ stage('Security Scan'){
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Scan status",
-           body: "Scan failure"}
+           body: "Scan failure"}}
         
 stage('Deploy to staging'){
     steps{
@@ -66,7 +66,6 @@ stage('Deploy to Production'){
     steps{
         echo "deploy the application to a production server AWS EC2 instance server"
     }
-
 }
 }
 }
