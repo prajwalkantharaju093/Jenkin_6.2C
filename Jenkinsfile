@@ -8,15 +8,15 @@ PRODUCTION_ENVIRONMENT ="Airavata"
 stages {
     stage('Build'){
     steps{
-      mail to: "prajwalkantharaju@gmail.com"
-      subject: "Build status"
-      body: "Build success"
         echo "fetch the source code from the directory path $DIRECTORY_PATH"
 echo "compile the code and generate any necessary artifacts"
     }
     post{
         always{echo "always"}
-    success{ echo "successfully DONE"}
+    success{ echo "successfully DONE"
+      mail to: "prajwalkantharaju@gmail.com"
+      subject: "Build status"
+      body: "Build success"}
 failure{echo "Sorry failed"}}}
 
 stage('Test'){
