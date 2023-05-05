@@ -46,7 +46,7 @@ stage('Approval'){
 
 stage('Deploy to Production'){
     steps{
-        echo "Deploy to $PRODUCTION_ENVIRONMENT Successfull"
+        echo "Deploy to $PRODUCTION_ENVIRONMENT successfull"
     }
 }
 }
