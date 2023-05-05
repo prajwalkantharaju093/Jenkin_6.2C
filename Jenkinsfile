@@ -8,10 +8,25 @@ stages {
     post{
         always{echo "always"}
     success{ 
-      emailext body: 'Stage completed successfully. Please see attached log file for details.', 
-    attachmentsPattern: '*.log',
-    to: 'prajwalkantharaju.com',
-    subject: 'Pipeline Notification - Stage Completed'
+      script {
+                def subject = "Pipeline succeeded"
+                def body = "The pipeline completed successfully"
+                def recipients = "prajwalkantharaju@gmail.com"
+                
+                def logs = findFiles(glob: '**/*.log')
+                if (logs) {
+                    def attachments = logs.collect { it.path }
+                    emailext attachmentsPattern: attachments.join(','),
+                             body: body,
+                             mimeType: 'text/plain',
+                             subject: subject,
+                             to: recipients
+                } else {
+                    emailext body: body,
+                             mimeType: 'text/plain',
+                             subject: subject,
+                             to: recipients
+                }
     }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
