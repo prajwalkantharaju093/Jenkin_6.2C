@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Build the code using maven and to compile and package code.'
+                echo 'Building code with Maven'
             }
         }
         stage('Unit and Integration Tests') {
@@ -53,7 +53,7 @@ pipeline {
             emailext (
                 subject: "Pipeline Failed",
                 body: "The pipeline has failed. See attached logs.",
-                to: "prajwalkantharaju@gmail.com",
+                to: "yashjangra617@gmail.com",
                 attachLog: true,
             )
         }
