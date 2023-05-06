@@ -8,7 +8,7 @@ stages {
     post{
         always{echo "always"}
    success { 
-        emailext attachLog: true, body: "Build success", subject: "Build status", to: "prajwalk930@gmail.com"
+        emailext attachLog: true, body: "Build success", subject: "Build status", to: "prajwalkantharaju@gmail.com"
     }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
