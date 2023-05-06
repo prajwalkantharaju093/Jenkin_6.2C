@@ -4,11 +4,12 @@ stages {
     stage('Build'){
     steps{
         echo "Build the code using maven and to compile and package code."
+        emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
     }
     post{
         always{echo "always"}
     success{ 
-        emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
+//         emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
     }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
