@@ -1,44 +1,95 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building code with Maven'
-            }
-        }
-        stage('Unit and Integration Tests') {
-            steps {
-                echo 'Running unit tests with JUnit'
-                echo 'Running integration tests with Selenium'
-            }
-        }
-        stage('Code Analysis') {
-            steps {
-                echo 'Analyzing code with SonarQube'
-            }
-        }
-        stage('Security Scan') {
-            steps {
-                echo 'Scanning code with OWASP ZAP'
-            }
-        }
-        stage('Deploy to Staging') {
-            steps {
-                echo 'Deploying to AWS EC2 instance'
-            }
-        }
-        stage('Integration Tests on Staging') {
-            steps {
-                echo 'Running integration tests on staging environment'
-            }
-        }
-        stage('Deploy to Production') {
-            steps {
-                echo 'Deploying to AWS EC2 instance'
-            }
-        }
+pipeline{
+agent any
+stages {
+    stage('Build'){
+    steps{
+        echo "Build the code using maven and to compile and package code."
     }
-    post {
+    post{
+        always{echo "always"}
+   success { 
+emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: 'Build status',
+                body: 'Build success. Please check the logs for details.',            
+            )
+    }
+failure{emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: 'Build status',
+                body: 'Build faliure. Please check the logs for details.',)
+       }
+}
+    
+stage('Unit and Integration Tests'){
+    steps{
+        echo "running unit tests using selenium" 
+        echo "running integration tests using selenium"
+    }
+}
+
+stage('Code Analysis'){
+    steps{
+        echo "check the quality of the code as per industry standards using CheckStyle"
+    }
+}
+
+stage('Security Scan'){
+    steps{
+        echo "performing a security scan on the code using a tool to identify any vulnerabilities using Acunetix"
+    }
+    post{
+    success{ emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: Security Scan status,
+                body: 'The Security Scan has succeeded. Please check the logs for details.',
+                
+            )}
+failure{emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: Security Scan status,
+                body: 'The Security Scan has failed. Please check the logs for details.',
+                
+            )}}}
+        
+stage('Deploy to staging'){
+    steps{
+        echo "deploy the application to a staging server AWS EC2 instance server"
+    }
+}
+
+stage('Integration Tests on Staging'){
+    steps{
+        echo "testing on staging environment using selenium"
+    }
+    post{
+    success{ emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: Integration Tests status,
+                body: 'The Integration Tests has succeeded. Please check the logs for details.',
+                
+            )
+     }
+failure{emailext (
+                attachLog: true, 
+                to: 'prajwalkantharaju@gmail.com',
+                subject: Integration Tests status,
+                body: 'The Integration Tests has failed. Please check the logs for details.',
+                
+            )}}
+}
+
+stage('Deploy to Production'){
+    steps{
+        echo "deploy the application to a production server AWS EC2 instance server"
+    }
+}
+post {
         success {
             emailext (
                 attachLog: true, 
@@ -53,9 +104,11 @@ pipeline {
             emailext (
                 subject: "Pipeline Failed",
                 body: "The pipeline has failed. See attached logs.",
-                to: "yashjangra617@gmail.com",
+                to: "prajwalkantharaju@gmail.com",
                 attachLog: true,
             )
         }
     }
+
+}
 }
