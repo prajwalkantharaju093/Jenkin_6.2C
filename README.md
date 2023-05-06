@@ -1,5 +1,4 @@
-# Jenkin_6.2C
-SIT223-SIT753 Credit Task: Continuous Integration and Deployment with Jenkins and GitHub
+Continuous Integration and Deployment with Jenkins and GitHub
 
 
 Continuous Integration and Deployment
@@ -41,11 +40,4 @@ end of test and security scan stages. The notification emails should include the
 of the stage (success or failure), and logs as attachment.
 5. Test the pipeline by making a few commits to the GitHub repository and ensuring that
 the pipeline runs successfully, and notification emails are sent.
-Task Submission Instructions:
-You must submit the following files to OnTrack:
-1. A GitHub repository link with a Jenkinsfile containing the pipeline definition. Please
-make sure that your marking tutor has access to it.
-2. Jenkinsfile that defines the pipeline stages and scripts.
-3. A demo video that demonstrates the successful execution of the pipeline and the
-email notification received by you at the end of specified stages. Submit the link to
-your demo as a PDF document
+
