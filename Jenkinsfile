@@ -44,14 +44,14 @@ stage('Security Scan'){
     success{ emailext (
                 attachLog: true, 
                 to: 'prajwalkantharaju@gmail.com',
-                subject: Security Scan status,
+                subject: 'Security Scan status',
                 body: 'The Security Scan has succeeded. Please check the logs for details.',
                 
             )}
 failure{emailext (
                 attachLog: true, 
                 to: 'prajwalkantharaju@gmail.com',
-                subject: Security Scan status,
+                subject: 'Security Scan status',
                 body: 'The Security Scan has failed. Please check the logs for details.',
                 
             )}}}
@@ -70,7 +70,7 @@ stage('Integration Tests on Staging'){
     success{ emailext (
                 attachLog: true, 
                 to: 'prajwalkantharaju@gmail.com',
-                subject: Integration Tests status,
+                subject: 'Integration Tests status',
                 body: 'The Integration Tests has succeeded. Please check the logs for details.',
                 
             )
@@ -78,7 +78,7 @@ stage('Integration Tests on Staging'){
 failure{emailext (
                 attachLog: true, 
                 to: 'prajwalkantharaju@gmail.com',
-                subject: Integration Tests status,
+                subject: 'Integration Tests status',
                 body: 'The Integration Tests has failed. Please check the logs for details.',
                 
             )}}
