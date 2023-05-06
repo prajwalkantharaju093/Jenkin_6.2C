@@ -88,7 +88,7 @@ stage('Deploy to Production'){
     steps{
         echo "deploy the application to a production server AWS EC2 instance server"
     }
-}
+}}
 post {
         success {
             emailext (
@@ -109,5 +109,4 @@ post {
             )
         }
     }
-}
 }
