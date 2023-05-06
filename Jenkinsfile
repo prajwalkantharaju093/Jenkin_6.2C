@@ -3,14 +3,13 @@ agent any
 stages {
     stage('Build'){
     steps{
-//         echo "Build the code using maven and to compile and package code."
-        emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
+        echo "Build the code using maven and to compile and package code."
     }
     post{
         always{echo "always"}
-//     success{ 
-// //         emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
-//     }
+    success{ 
+        emailext attachLog: true, body: 'Build success', subject: 'Build status', to: 'prajwalkantharaju@gmail.com'
+    }
 failure{echo "Sorry failed"
        mail to: "prajwalkantharaju@gmail.com",
       subject: "Build status",
