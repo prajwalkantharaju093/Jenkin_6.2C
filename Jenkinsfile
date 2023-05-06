@@ -21,7 +21,7 @@ failure{emailext (
                 subject: 'Build status',
                 body: 'Build faliure. Please check the logs for details.',)
        }
-}
+    }}
     
 stage('Unit and Integration Tests'){
     steps{
@@ -109,7 +109,6 @@ post {
             )
         }
     }
-
 }
 }
 }
